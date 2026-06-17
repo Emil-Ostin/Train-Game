@@ -5,7 +5,10 @@ using static UnityEditor.FilePathAttribute;
 public class PlacementHandler : MonoBehaviour
 {
     // The object to be placed
-    [SerializeField] GameObject placeObject;
+    [SerializeField] GameObject[] tracks;
+    int placeItem;
+
+    [SerializeField] Vector2 cursorOffset2;
 
     // The object that shows where you are placing
     [SerializeField] GameObject cursor;
@@ -33,15 +36,20 @@ public class PlacementHandler : MonoBehaviour
     SpriteRenderer cursorSprite;
     SpriteRenderer objectSprite;
 
-    InputAction place;
-    InputAction delete;
-    InputAction rotate;
+    InputAction placeAction;
+    InputAction deleteAction;
+    InputAction rotateAction;
+
+    InputAction item1Action;
+    InputAction item2Action;
 
     private void Start()
     {
-        place = InputSystem.actions.FindAction("Place");
-        delete = InputSystem.actions.FindAction("Delete");
-        rotate = InputSystem.actions.FindAction("Rotate");
+        placeAction = InputSystem.actions.FindAction("Place");
+        deleteAction = InputSystem.actions.FindAction("Delete");
+        rotateAction = InputSystem.actions.FindAction("Rotate");
+        item1Action = InputSystem.actions.FindAction("Item1");
+        item2Action = InputSystem.actions.FindAction("Item2");
 
         cursorSprite = GetComponentInChildren<SpriteRenderer>();
 
@@ -72,18 +80,30 @@ public class PlacementHandler : MonoBehaviour
 
         Rotate();
 
+        Select();
+
         Cursor();
     }
 
     void Place()
     {
+        if (item1Action.WasPerformedThisFrame())
+        {
+            placeItem = 0;
+        }
+
+        if (item2Action.WasPerformedThisFrame())
+        {
+            placeItem = 1;
+        }
+
         // Instantiates the object to be placed at the position of the cursor and as a child of the object holder
-        if (place.WasPerformedThisFrame())
+        if (placeAction.WasPerformedThisFrame())
         {
             // Checks if the spot is occupied
             if (hit.collider == null)
             {
-                Instantiate(placeObject, cursorPos, Quaternion.Euler(0, 0, rotation), objectParent);
+                Instantiate(tracks[placeItem], cursorPos, Quaternion.Euler(0, 0, rotation), objectParent);
             }
         }
     }
@@ -91,7 +111,7 @@ public class PlacementHandler : MonoBehaviour
     void Delete()
     {
         // Deletes the placed object that the cursor is hovering over
-        if (delete.WasPerformedThisFrame())
+        if (deleteAction.WasPerformedThisFrame())
         {
             // Checks if there actually is something at the cursor before trying to delete
             if (hit.collider != null)
@@ -103,7 +123,7 @@ public class PlacementHandler : MonoBehaviour
 
     void Rotate()
     {
-        if (rotate.WasPerformedThisFrame())
+        if (rotateAction.WasPerformedThisFrame())
         {
             rotation -= 90;
 
@@ -114,9 +134,15 @@ public class PlacementHandler : MonoBehaviour
         }
     }
 
+    void Select()
+    {
+        
+    }
+
+
     void Cursor()
     {
-        objectSprite = placeObject.GetComponentInChildren<SpriteRenderer>();
+        objectSprite = tracks[placeItem].GetComponentInChildren<SpriteRenderer>();
 
         print(objectSprite.sprite);
 

@@ -52,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Flip",
+                    "name": "Item1",
                     "type": "Button",
-                    "id": "5cf716b5-2718-41c9-9388-04d4a8fc918a",
+                    "id": "99236a15-65f2-4f3a-9a4f-d7d3fefc6018",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Item2",
+                    "type": "Button",
+                    "id": "4ec0c108-b853-4a68-9b5e-55d9c1ad5141",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -317,12 +326,23 @@
                 },
                 {
                     "name": "",
-                    "id": "7599ce4c-aa3e-411c-adc7-72186b4c9479",
-                    "path": "<Keyboard>/f",
+                    "id": "c6f46d61-78d4-4d5d-a4b6-988278c0f531",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Flip",
+                    "action": "Item1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10be1838-62cd-4a51-9e28-832331137a17",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Item2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

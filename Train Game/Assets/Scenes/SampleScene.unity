@@ -177,7 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81249098d143854ab1fa1ac9081a945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridHandler
-  placeObject: {fileID: 8305357069819165755, guid: 4f06d217fc2ac8140976819d1d003638, type: 3}
+  tracks:
+  - {fileID: 193028297158862056, guid: 98f63027ac329844f83d6266985d5ac7, type: 3}
+  - {fileID: 8305357069819165755, guid: 4f06d217fc2ac8140976819d1d003638, type: 3}
+  cursorOffset2: {x: 0.5, y: 0.5}
   cursor: {fileID: 8819365276161443698}
   objectLayer:
     serializedVersion: 2
@@ -447,7 +450,7 @@ GameObject:
   - component: {fileID: 1183077277}
   m_Layer: 0
   m_Name: Cursor (1)
-  m_TagString: Untagged
+  m_TagString: Cursor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,7 +464,7 @@ Transform:
   m_GameObject: {fileID: 1183077275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
