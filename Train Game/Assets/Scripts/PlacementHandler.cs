@@ -24,11 +24,14 @@ public class PlacementHandler : MonoBehaviour
     // A shorthand for cursor.transform.position
     Vector3 cursorPos;
 
+    // Current that objects are set to be when placed
     int rotation;
 
     RaycastHit2D hit;
 
     Grid grid;
+    SpriteRenderer cursorSprite;
+    SpriteRenderer objectSprite;
 
     InputAction place;
     InputAction delete;
@@ -39,6 +42,8 @@ public class PlacementHandler : MonoBehaviour
         place = InputSystem.actions.FindAction("Place");
         delete = InputSystem.actions.FindAction("Delete");
         rotate = InputSystem.actions.FindAction("Rotate");
+
+        cursorSprite = GetComponentInChildren<SpriteRenderer>();
 
         grid = GetComponent<Grid>();
     }
@@ -66,6 +71,8 @@ public class PlacementHandler : MonoBehaviour
         Delete();
 
         Rotate();
+
+        Cursor();
     }
 
     void Place()
@@ -105,5 +112,14 @@ public class PlacementHandler : MonoBehaviour
                 rotation = 0;
             }
         }
+    }
+
+    void Cursor()
+    {
+        objectSprite = placeObject.GetComponentInChildren<SpriteRenderer>();
+
+        print(objectSprite.sprite);
+
+        cursorSprite.sprite = objectSprite.sprite;
     }
 }
